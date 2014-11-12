@@ -42,3 +42,8 @@ console.log( Bio.Mass('PRTEINSTRING') );
 console.log( '\n> Cyclospectrum' );
 console.log( JSON.stringify(Bio.Cyclospectrum('PRTEIN')) );
 
+console.log( '\n> CyclopeptideSequencing' );
+console.log( Bio.CyclopeptideSequencing([0,87,87,87,113,114,128,128,128,129,129,131,174,200,215]) );
+
+console.log( '\n> CyclopeptideScoring' );
+console.log( Bio.CyclopeptideScoring('NQEL', [0,99,113,114,128,227,257,299,355,356,370,371,484]) );

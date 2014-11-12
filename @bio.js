@@ -188,3 +188,67 @@ exports.Cyclospectrum = function(peptide)
 	return parts.sort(function(i,j){ return i-j; });
 }
 
+// Cyclopeptide Sequencing
+// 
+// Example :
+// CyclopeptideSequencing([0,87,87,87,113,114,128,128,128,129,129,131,174,200,215]);
+exports.CyclopeptideSequencing = function(spectrum)
+{
+	// Проверка наличия всего массива с спектре
+	var ok = function(arr){
+		for(var i in arr) if(spectrum.indexOf(arr[i]) == -1) return false;
+		return true;
+	};
+	
+	// Набор возможных начальных масс 
+	var M = []; 
+	[57,71,87,97,99,101,103,113,114,115,128,129,131,137,147,156,163,186].map(function(n){ if(ok([n])) M.push(n); });
+	
+	var list = [];
+	var possble = function(arr){
+		if(arr.length == 0) return list;
+
+		var line = arr.pop();
+		var before = line[0];
+		var max    = line[1];
+
+		if(max == 0){
+			list.push( before.join('-') );
+		} else {
+			var rbefore = before.reverse();
+			var preline = [];
+			for(var i in M){
+				// Предшественники в списке. Все смежные справа суммы должны быть в спектре
+				var init = [], tmp = rbefore.concat( M[i] );
+				// [1,1,1,1,3] -> [3,4,5,6,7]
+				for(var e in tmp) init.push( (init.slice(-1)[0] || 0) + tmp[e] );
+				// Проверка суммы
+				if(ok(init) && ok([ max - M[i] ])) arr.push( [before.concat(M[i]), max - M[i]] );
+			}
+		}
+		return possble(arr);
+	};
+	
+	return possble([[[], spectrum.slice(-1)[0]]]);
+}
+
+// Cyclopeptide Scoring Problem: Compute the score of a cyclic peptide against a spectrum.
+//      Input: An amino acid string Peptide and a collection of integers Spectrum. 
+//      Output: The score of Peptide against Spectrum, Score(Peptide, Spectrum).
+//
+// Example :
+// CyclopeptideScoring('NQEL', [0,99,113,114,128,227,257,299,355,356,370,371,484]);
+exports.CyclopeptideScoring = function(peptide, spectrum)
+{
+	var theory = exports.Cyclospectrum(peptide), score = 0;
+	for(var i in theory){
+		var p = spectrum.indexOf(theory[i]);
+		if(p != -1){
+			spectrum.splice(p, 1); score++;
+		}
+	}
+	return score;
+}
+
+
+
