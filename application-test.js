@@ -20,8 +20,12 @@ console.log( JSON.stringify(Bio.Mismatches({'GGG' : 0}, 1)) );
 console.log( '\n> FrequentWordsMismatches' );
 console.log( Bio.FrequentWordsMismatches('ACGTTGCATGTCGCATGATGCATGAGAGCT', 4, 1) );
 
+console.log( '\n> ProteinTable' );
+console.log( JSON.stringify(Bio.ProteinTable) );
+
 console.log( '\n> ProteinTranslation' );
 console.log( Bio.ProteinTranslation('AUGGCCAUGGCGCCCAGAACUGAGAUCAAUAGUACCCGUAUUAACGGGUGA') );
+console.log( Bio.ProteinTranslation('ATGGCCATGGCCCCCAGAACTGAGATCAATAGTACCCGTATTAACGGGTGA') );
 
 console.log( '\n> PeptideEncoding' );
 console.log( Bio.PeptideEncoding('ATGGCCATGGCCCCCAGAACTGAGATCAATAGTACCCGTATTAACGGGTGA', 'MA') );
@@ -29,4 +33,12 @@ console.log( Bio.PeptideEncoding('ATGGCCATGGCCCCCAGAACTGAGATCAATAGTACCCGTATTAACG
 console.log( '\n> Find' );
 console.log( Bio.Find('ATGGCCATGGCCCCCAGAACTGAGATCAATAGTACCCGTATTAACGGGTGA', 'A') );
 
+console.log( '\n> MassTable' );
+console.log( JSON.stringify(Bio.MassTable) );
+
+console.log( '\n> Mass' );
+console.log( Bio.Mass('PRTEINSTRING') );
+
+console.log( '\n> Cyclospectrum' );
+console.log( JSON.stringify(Bio.Cyclospectrum('PRTEIN')) );
 

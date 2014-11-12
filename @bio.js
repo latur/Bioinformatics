@@ -111,16 +111,22 @@ exports.Mismatches = function(data, d)
 //
 // Example : 
 // ProteinTranslation('AUGGCCAUGGCGCCCAGAACUGAGAUCAAUAGUACCCGUAUUAACGGGUGA');
+exports.ProteinTable = {
+	'AAA':'K', 'AAC':'N', 'AAG':'K', 'AAU':'N', 'ACA':'T', 'ACC':'T', 'ACG':'T', 'ACU':'T', 
+	'AGA':'R', 'AGC':'S', 'AGG':'R', 'AGU':'S', 'AUA':'I', 'AUC':'I', 'AUG':'M', 'AUU':'I', 
+	'CAA':'Q', 'CAC':'H', 'CAG':'Q', 'CAU':'H', 'CCA':'P', 'CCC':'P', 'CCG':'P', 'CCU':'P', 
+	'CGA':'R', 'CGC':'R', 'CGG':'R', 'CGU':'R', 'CUA':'L', 'CUC':'L', 'CUG':'L', 'CUU':'L', 
+	'GAA':'E', 'GAC':'D', 'GAG':'E', 'GAU':'D', 'GCA':'A', 'GCC':'A', 'GCG':'A', 'GCU':'A', 
+	'GGA':'G', 'GGC':'G', 'GGG':'G', 'GGU':'G', 'GUA':'V', 'GUC':'V', 'GUG':'V', 'GUU':'V', 
+	'UAA':'.', 'UAC':'Y', 'UAG':'.', 'UAU':'Y', 'UCA':'S', 'UCC':'S', 'UCG':'S', 'UCU':'S', 
+	'UGA':'.', 'UGC':'C', 'UGG':'W', 'UGU':'C', 'UUA':'L', 'UUC':'F', 'UUG':'L', 'UUU':'F' 
+}
 exports.ProteinTranslation = function(string)
 {
-	var table = { 'AAA':'K', 'AAC':'N', 'AAG':'K', 'AAU':'N', 'ACA':'T', 'ACC':'T', 'ACG':'T', 'ACU':'T', 'AGA':'R', 'AGC':'S', 'AGG':'R', 'AGU':'S', 'AUA':'I', 'AUC':'I', 'AUG':'M', 'AUU':'I', 'CAA':'Q', 'CAC':'H', 'CAG':'Q', 'CAU':'H', 'CCA':'P', 'CCC':'P', 'CCG':'P', 'CCU':'P', 'CGA':'R', 'CGC':'R', 'CGG':'R', 'CGU':'R', 'CUA':'L', 'CUC':'L', 'CUG':'L', 'CUU':'L', 'GAA':'E', 'GAC':'D', 'GAG':'E', 'GAU':'D', 'GCA':'A', 'GCC':'A', 'GCG':'A', 'GCU':'A', 'GGA':'G', 'GGC':'G', 'GGG':'G', 'GGU':'G', 'GUA':'V', 'GUC':'V', 'GUG':'V', 'GUU':'V', 'UAA':'.', 'UAC':'Y', 'UAG':'.', 'UAU':'Y', 'UCA':'S', 'UCC':'S', 'UCG':'S', 'UCU':'S', 'UGA':'.', 'UGC':'C', 'UGG':'W', 'UGU':'C', 'UUA':'L', 'UUC':'F', 'UUG':'L', 'UUU':'F' };
 	var Protein = '';
-	for(var i = 0; i < string.length; i +=3) Protein += (table[string.substr(i, 3)] ? table[string.substr(i, 3)] : '?');
+	var RNA = string.indexOf('T') == -1 ? string : string.replace(/T/g, 'U');
+	for(var i = 0; i < string.length; i +=3) Protein += exports.ProteinTable[ RNA.substr(i, 3) ] || '?';
 	return Protein;
-}
-exports.ProteinEncode = function(string)
-{
-	return exports.ProteinTranslation( string.replace(/T/g, 'U') );
 }
 
 // Peptide Encoding Problem: Find substrings of a genome encoding a given amino acid sequence.
@@ -136,8 +142,8 @@ exports.PeptideEncoding = function(string, peptide)
 	{
 		var part = string.substr(i, 3 * l);
 		var partReverse = stringReverse.substr(i, 3 * l);
-		if(exports.ProteinEncode( part ) == peptide) parts.push(part);
-		if(exports.ProteinEncode( partReverse ) == peptide) parts.push(exports.ReverseComplement(partReverse));
+		if(exports.ProteinTranslation( part ) == peptide) parts.push(part);
+		if(exports.ProteinTranslation( partReverse ) == peptide) parts.push(exports.ReverseComplement(partReverse));
 	}
 	return parts;
 }
@@ -153,6 +159,32 @@ exports.Find = function(string, element)
 	return places;
 }
 
-// Mass Spectrometry
-export.MassTable = { 'G':'57', 'A':'71', 'S':'87', 'P':'97', 'V':'99', 'T':'101', 'C':'103', 'I':'113', 'L':'113', 'N':'114', 'D':'115', 'K':'128', 'Q':'128', 'E':'129', 'M':'131', 'H':'137', 'F':'147', 'R':'156', 'Y':'163', 'W':'186' };
+// 
+// Generating Theoretical Spectrum Problem: Generate the theoretical spectrum of a cyclic peptide.
+//      Input: An amino acid string Peptide.
+//      Output: Cyclospectrum(Peptide).
+// 
+// Example :
+// Cyclospectrum('ACKF')
+exports.MassTable = 
+{
+	'G' : 57,  'A' : 71,  'S' : 87,  'P' : 97,  'V' : 99, 
+	'T' : 101, 'C' : 103, 'I' : 113, 'L' : 113, 'N' : 114, 
+	'D' : 115, 'K' : 128, 'Q' : 128, 'E' : 129, 'M' : 131, 
+	'H' : 137, 'F' : 147, 'R' : 156, 'Y' : 163, 'W' : 186 
+}
+exports.Mass = function(peptide)
+{
+	var mass = peptide.split('').map(function(e){ return exports.MassTable[e] || 0; });
+	return mass.reduce(function(i, j){ return i + j; });
+}
+exports.Cyclospectrum = function(peptide)
+{
+	var parts = [ 0, exports.Mass( peptide ) ];
+	for(var sub = 1, l = peptide.length, cyclo = peptide + peptide; sub < l; sub++)
+	{
+		for(var i = 0; i < l; i++) parts.push( exports.Mass( cyclo.substr(i, sub) ) );
+	}
+	return parts.sort(function(i,j){ return i-j; });
+}
 

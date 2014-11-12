@@ -32,3 +32,39 @@ Bio.Mismatches('ATGC', 2)
 ~~~
 Bio.FrequentWordsMismatches('ATGCATGC', 4, 1)
 ~~~
+
+Таблица замен триплета ДНК на нуклеотид
+~~~
+Bio.ProteinTable
+~~~
+
+Получение из последовательности РНК пептидной
+~~~
+Bio.ProteinTranslation('AUGGCCAUGG');
+Bio.ProteinTranslation('ATGGCCATGG');
+~~~
+
+Нахождение подпоследовательности, которая может кодировать данный пептид
+~~~
+Bio.PeptideEncoding('ATGGCCATG', 'MA')
+~~~
+
+Поиск подстроки в строке. Результат — массив точек вхождения
+~~~
+Bio.Find('ATGGATCCAGAACTG', 'A')
+~~~
+
+Таблица масс аминокислоты в дальтонах (округление до целых чисел)
+~~~
+Bio.MassTable
+~~~
+
+Масса пептида в дальтонах
+~~~
+Bio.Mass('PRTEINSTRING')
+~~~
+
+Теоретический спектр циклопептида
+~~~
+Bio.Cyclospectrum('PRTEIN')
+~~~
