@@ -47,3 +47,7 @@ console.log( Bio.CyclopeptideSequencing([0,87,87,87,113,114,128,128,128,129,129,
 
 console.log( '\n> CyclopeptideScoring' );
 console.log( Bio.CyclopeptideScoring('NQEL', [0,99,113,114,128,227,257,299,355,356,370,371,484]) );
+
+console.log( '\n> ImplantedMotif' );
+console.log( JSON.stringify(Bio.ImplantedMotif(['ATTTGGC', 'TGCCTTA', 'CGGTATC', 'GAAAATT'], 3, 1) ) );
+

@@ -251,4 +251,38 @@ exports.CyclopeptideScoring = function(peptide, spectrum)
 }
 
 
+// Implanted Motif Problem: Find all (k, d)-motifs in a collection of strings.
+//      Input: A collection of strings Dna, and integers k and d.
+//      Output: All (k, d)-motifs in Dna.
+// 
+// Example : 
+// ImplantedMotif(['ATTTGGC', 'TGCCTTA', 'CGGTATC', 'GAAAATT'], 5, 1)
+exports.ImplantedMotif = function(dna, k, d)
+{
+	// Получение всех k-меров (+мутации) из строк массива dna
+	var kmers = {};
+	for(var e in dna)
+	{
+		for(var i = 0; i <= dna[e].length - k; i++)
+		{
+			var mismatches = exports.Mismatches(dna[e].substr(i, k), d);
+			for(var m in mismatches) kmers[ m ] = 0;
+		}
+	}
+
+	// Есть ли в строке любой элемент массива
+	var instring = function(str, obj){
+		for(var e in obj) if(str.indexOf(e) != -1) return true;
+		return false;
+	};
+	// Ксть ли строка во всех элементах массива dna (~ мутации)
+	var check = function(m){
+		for(var i in dna) if( !instring(dna[i], exports.Mismatches(m, d)) ) return false;
+		return true;
+	};
+
+	var motifs = [];
+	for(var m in kmers) if( check(m) ) motifs.push( m );
+	return motifs;
+}
 
