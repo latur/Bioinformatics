@@ -286,3 +286,46 @@ exports.ImplantedMotif = function(dna, k, d)
 	return motifs;
 }
 
+// Median String Problem: Find a median string.
+//      Input: A collection of strings Dna and an integer k.
+//      Output: A k-mer Pattern that minimizes d(Pattern, Dna) among all k-mers Pattern.
+//
+// Example : 
+// MedianString(['ATTTGGC', 'TGCCTTA', 'CGGTATC', 'GAAAATT'], 2)
+exports.MedianString = function(dna, k){
+	var d = function(xxx, y){
+		var distance = Infinity;
+		for(var i = 0, l = y.length; i <= xxx.length - l; i++)
+		{
+			var t = exports.HammingDistance(y, xxx.substr(i, l));
+			distance = t < distance ? t : distance;  
+		}
+		return distance;
+	};
+	
+	var dd = function(y){
+		var sum = 0;
+		for(var i in dna) sum += d(dna[i], y);
+		return sum;
+	};
+	
+	var patterns = exports.Patterns(k);
+	for(var i = 0, l = patterns.length, min = Infinity, median = []; i < l; i++)
+	{
+		var s = dd(patterns[i]);
+		if(s == min) median.push( patterns[i] );
+		if(s <  min) median = [ patterns[i] ], min = s;
+	}
+	return median;
+}
+// Генерирование паттернов длины k 
+exports.Patterns = function(k){
+	var nk = function(s){
+		return Array(k - s.length + 1).join('A') + 
+		s.replace(/0/g, 'A').replace(/1/g, 'T').replace(/2/g, 'G').replace(/3/g, 'C');
+	}
+	var p = [];
+	for(var i = 0, l = Math.pow(4, k); i < l; i++) p.push(  nk(i.toString(4)) );
+	return p;
+}
+

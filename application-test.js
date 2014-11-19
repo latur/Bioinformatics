@@ -51,3 +51,7 @@ console.log( Bio.CyclopeptideScoring('NQEL', [0,99,113,114,128,227,257,299,355,3
 console.log( '\n> ImplantedMotif' );
 console.log( JSON.stringify(Bio.ImplantedMotif(['ATTTGGC', 'TGCCTTA', 'CGGTATC', 'GAAAATT'], 3, 1) ) );
 
+console.log( '\n> MedianString' );
+console.log( JSON.stringify(Bio.MedianString(['ATTTGGC', 'TGCCTTA', 'CGGTATC', 'GAAAATT'], 2) ) );
+
+
