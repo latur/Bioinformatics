@@ -292,7 +292,8 @@ exports.ImplantedMotif = function(dna, k, d)
 //
 // Example : 
 // MedianString(['ATTTGGC', 'TGCCTTA', 'CGGTATC', 'GAAAATT'], 2)
-exports.MedianString = function(dna, k){
+exports.MedianString = function(dna, k)
+{
 	var d = function(xxx, y){
 		var distance = Infinity;
 		for(var i = 0, l = y.length; i <= xxx.length - l; i++)
@@ -319,7 +320,8 @@ exports.MedianString = function(dna, k){
 	return median;
 }
 // Генерирование паттернов длины k 
-exports.Patterns = function(k){
+exports.Patterns = function(k)
+{
 	var nk = function(s){
 		return Array(k - s.length + 1).join('A') + 
 		s.replace(/0/g, 'A').replace(/1/g, 'T').replace(/2/g, 'G').replace(/3/g, 'C');
@@ -327,5 +329,23 @@ exports.Patterns = function(k){
 	var p = [];
 	for(var i = 0, l = Math.pow(4, k); i < l; i++) p.push(  nk(i.toString(4)) );
 	return p;
+}
+
+// Profile-most Probable k-mer Problem: Find a Profile-most probable k-mer in a string.
+//      Input: A string Text, an integer k, and a 4 × k matrix Profile.
+//      Output: A Profile-most probable k-mer in Text.
+exports.ProfileMostProbable = function(string, k, matrix)
+{
+	var Probable = function(str){
+		for(var w = 0, p = 1, len = str.length; w < len; w++) p = p * matrix[ str[w] ][ w ];
+		return p;
+	};
+	for(var i = 0, max = 0, most = '', l = string.length; i <= l - k; i++)
+	{
+		var s = string.substr(i, k);
+		var p = Probable(s);
+		if( p >=  max) most = s, max = p;
+	}
+	return most;
 }
 

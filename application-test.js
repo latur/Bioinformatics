@@ -54,4 +54,11 @@ console.log( JSON.stringify(Bio.ImplantedMotif(['ATTTGGC', 'TGCCTTA', 'CGGTATC',
 console.log( '\n> MedianString' );
 console.log( JSON.stringify(Bio.MedianString(['ATTTGGC', 'TGCCTTA', 'CGGTATC', 'GAAAATT'], 2) ) );
 
+console.log( '\n> ProfileMostProbable' );
+var string = 'GTTTAAATTAAGAGGGGTCTTGTAACGAGTCCACAAAGTGTT';
+var matrix = { A: [ '0.364', '0.333', '0.303' ],
+  C: [ '0.182', '0.182', '0.212' ],
+  G: [ '0.121', '0.303', '0.182' ],
+  T: [ '0.333', '0.182', '0.303' ] };
+console.log( Bio.ProfileMostProbable(string, 3, matrix) );
 
