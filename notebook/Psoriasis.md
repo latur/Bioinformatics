@@ -74,3 +74,16 @@ $ split -l 30000000 SRR1146106.norm.fastq SRR1146106.norm.fastq.p_
 
 ![Пример гистограммы усреднённого качества для всех прочтений](https://raw.githubusercontent.com/latur/Bioinformatics-JS/master/notebook/Psoriasis/historgam.png)
 
+Выбираем по три набора данных для каждого из двух типов образцов и картируем прочтения на геном человка
+
+~~~
+SRR1146122.norm
+SRR1146109.norm
+SRR1146101.norm
+SRR1146094.psor
+SRR1146097.psor
+SRR1146087.psor
+~~~
+
+
+
