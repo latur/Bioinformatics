@@ -85,5 +85,25 @@ SRR1146097.psor
 SRR1146087.psor
 ~~~
 
+Для количественного анализа данных потребуется [HTSeq](http://www-huber.embl.de/users/anders/HTSeq/doc/overview.html). [Установка HTSeq на Mac](http://www-huber.embl.de/users/anders/HTSeq/doc/install.html#installation-on-macos-x) требует наличия [SciPy](http://www.scipy.org/install.html). Поставить его можно через [Macports](http://www.macports.org):
 
+~~~
+sudo port install py27-numpy py27-scipy py27-matplotlib py27-ipython +notebook py27-pandas py27-sympy py27-nose
+~~~
 
+Далее из файлов `.sam` и файла `.gtf` нотации генов человека получаем количественные значения экспрессии каждого из генов. Например для `SRR1146087.psor.sam`: 
+
+~~~
+htseq-count map/SRR1146087.psor.sam Homo_sapiens.GRCh38.79.gtf > map/SRR1146087.psor.htseq
+~~~
+
+Объединяем таблицы в одну и помещаем в файл `htseq.tsv`:
+
+```r
+workDir <- "E-GEOD-54456/map/"
+htseqFiles <- list.files(workDir, pattern = "*.htseq")
+Fraed <- function(file) read.table( paste(workDir, file, sep = "") )
+htseqTable <- Fraed(htseqFiles[1])["V1"]
+for(i in 1:6) htseqTable[substr(htseqFiles[i],0,15)] = Fraed(htseqFiles[i])[,2]  
+write.table(htseqTable, paste(workDir, "htseq.tsv", sep = ""), quote = F, sep = " ")
+```
