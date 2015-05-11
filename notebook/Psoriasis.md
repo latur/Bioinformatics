@@ -100,10 +100,68 @@ htseq-count map/SRR1146087.psor.sam Homo_sapiens.GRCh38.79.gtf > map/SRR1146087.
 Объединяем таблицы в одну и помещаем в файл `htseq.tsv`:
 
 ```r
-workDir <- "E-GEOD-54456/map/"
-htseqFiles <- list.files(workDir, pattern = "*.htseq")
-Fraed <- function(file) read.table( paste(workDir, file, sep = "") )
-htseqTable <- Fraed(htseqFiles[1])["V1"]
-for(i in 1:6) htseqTable[substr(htseqFiles[i],0,15)] = Fraed(htseqFiles[i])[,2]  
-write.table(htseqTable, paste(workDir, "htseq.tsv", sep = ""), quote = F, sep = " ")
+## Объединение таблиц
+# Директория с .htseq файлами
+workDir <- "/Volumes/Macintosh/Users/latur/Process/RNAseq/E-GEOD-54456/map/"
+# Функция чтения .htseq таблицы
+Fread   <- function(file) read.table( paste(workDir, file, sep = "") )
+# Список .htseq файлов
+files   <- list.files(workDir, pattern = "*.htseq")
+# Первый столбец (наименование гена) всех .htseq файлов должен совпадать. 
+# Извлекаем его из первого файла
+table   <- Fread(files[1])["V1"]
+colnames(table) = c("gene_id")
+# Добавляем второй столбец (количественные данные экспрессии)
+for(i in 1:length(files)) {
+  table[substr(files[i],0,15)] = Fread(files[i])[,2]
+} 
+# Последние 5 строчек - техническая информация, вырезаем:
+table <- table[1:(length(table[,1]) - 5),]
+# Сохраняем таблицу как htseq.tsv
+tsvFile <- paste(workDir, "htseq.tsv", sep = "")
+write.table(table, tsvFile, quote = F, sep = "\t", row.names = F)
+```
+
+### Variance Estimation
+
+```r
+# Установка bioconductor
+source("http://bioconductor.org/biocLite.R") 
+# Установка пакетов через biocLite
+biocLite("pasilla")
+biocLite("DESeq")
+# Подключение библиотеки
+library("DESeq")
+
+table  <- read.table(tsvFile, header = T, row.names = 1)
+design <- data.frame(row.names = colnames(table),
+  condition = c("psor","psor","psor","norm","norm","norm")
+)
+
+cds = newCountDataSet(table, design$condition)
+cds <- estimateSizeFactors( cds )
+cds <- estimateDispersions( cds )
+plotDispEsts(cds)
+```
+
+![Variance Estimation](https://raw.githubusercontent.com/latur/Bioinformatics-JS/master/notebook/Psoriasis/plotDispEsts.png)
+
+### Отрицательное биномиальное распределение (Паскаля)
+
+> Распределение дискретной случайной величины равной количеству произошедших неудач в последовательности испытаний Бернулли с вероятностью успеха p , проводимой до r-го успеха.
+
+```r
+res <- nbinomTest(cds, "psor", "norm")
+plotMA(res)
+hist(res$pval, breaks = 50)
+```
+
+![Variance Estimation](https://raw.githubusercontent.com/latur/Bioinformatics-JS/master/notebook/Psoriasis/plotMA.png)
+
+![Variance Estimation](https://raw.githubusercontent.com/latur/Bioinformatics-JS/master/notebook/Psoriasis/hist.png)
+
+
+```r
+resSig <- res[res$padj < 0.1, ]
+resSigOrder <- resSig[ order(res$padj), ]
 ```
