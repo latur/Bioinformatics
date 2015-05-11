@@ -162,3 +162,20 @@ hist(res$pval, breaks = 50)
 ```
 
 ![Variance Estimation](https://raw.githubusercontent.com/latur/Bioinformatics-JS/master/notebook/Psoriasis/hist.png)
+
+Судя по гистограмме, дифференциально экспрессирующихся генов нет:
+
+```r
+resTmp <- res[!is.na(res$padj), ]
+resTmpOrder <- resTmp[ order(resTmp$padj), ]
+resTmpOrder[1:5,]
+```
+
+~~~
+                   id    baseMean  baseMeanA baseMeanB foldChange log2FoldChange         pval         padj
+10973 ENSG00000163218 36.67340356 0.07446936  73.27234   983.9259       9.942406 2.051816e-18 9.916428e-15
+2     ENSG00000000005  0.03723468 0.07446936   0.00000     0.0000           -Inf 1.000000e+00 1.000000e+00
+6     ENSG00000000938  0.06597916 0.13195832   0.00000     0.0000           -Inf 1.000000e+00 1.000000e+00
+8     ENSG00000001036  0.06597916 0.13195832   0.00000     0.0000           -Inf 1.000000e+00 1.000000e+00
+9     ENSG00000001084  0.03723468 0.07446936   0.00000     0.0000           -Inf 1.000000e+00 1.000000e+00
+~~~
