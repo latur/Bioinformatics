@@ -153,15 +153,12 @@ plotDispEsts(cds)
 ```r
 res <- nbinomTest(cds, "psor", "norm")
 plotMA(res)
-hist(res$pval, breaks = 50)
 ```
 
 ![Variance Estimation](https://raw.githubusercontent.com/latur/Bioinformatics-JS/master/notebook/Psoriasis/plotMA.png)
 
-![Variance Estimation](https://raw.githubusercontent.com/latur/Bioinformatics-JS/master/notebook/Psoriasis/hist.png)
-
-
 ```r
-resSig <- res[res$padj < 0.1, ]
-resSigOrder <- resSig[ order(res$padj), ]
+hist(res$pval, breaks = 50)
 ```
+
+![Variance Estimation](https://raw.githubusercontent.com/latur/Bioinformatics-JS/master/notebook/Psoriasis/hist.png)
