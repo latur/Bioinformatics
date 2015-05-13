@@ -1,49 +1,36 @@
 # Transcriptome analysis of psoriasis in a large case-control sample: RNA-seq provides insights into disease mechanisms
 
-## Исходные данные:
+## Введение:
 
-* **ArrayExpress** [E-GEOD-59148](http://www.ebi.ac.uk/arrayexpress/experiments/E-GEOD-59148/)
-* **Fastq файлы** [SRP044108](http://www.ebi.ac.uk/ena/data/view/SRP044108)
+В работе рассматривается статья, посвящённая анализу транскриптома в клетках 
+людей, подверженных псориазу. 
 
-## Обработка:
+Авторы статьи рассмотрели метод RNA-seq для выявления генов, экспрессия которых 
+в здоровых пациентах отличается от экспрессии в больных. Было рассмотрено 
+82 образца биопсии здоровых пациентов и 92 — больных. 
+В общей сложности исходные данные для проводимого анализа представляют собой 
+~38 миллионов односторонних прочтений длиной 80 неуклеотидов.
+Данные опубликованы в базе ArrayExpress: **E-GEOD-59148**.
 
-Изучаются два вида пациентов — больные просариаз и здоровые. Файл `E-GEOD-54456.sdrf.txt` содежит информацию о пациентах, в том числе указатель `normal_skin` и `psoriasis_skin`. 
+Передо мной была поставлена задача провести аналогичные численные рассчёты 
+с опубликованными данными эксперимента с целью выявления дифференциально 
+экспрессирующихся генов.
 
-[Здесь](http://www.ebi.ac.uk/ena/data/view/SRP044108) имеется файл `SRP035988.text` с ftp ссылками на `.fastq` файлы секвенирования. Извлекаем три файла для здорового и три файла для больного пациента.
 
-### Загрузка данных:
+## Имеющиеся данные
 
-**R:**
-
-```r
-info_file <- "E-GEOD-54456/E-GEOD-54456.sdrf.txt";
-data_file <- "E-GEOD-54456/SRP035988.text";
-info <- read.table(info_file, sep="\t", header=TRUE)[,2:3]
-data <- read.table(data_file, sep="\t", header=TRUE)[,c(4,11)]
-colnames(info) <- c("Id", "Skin")
-colnames(data) <- c("Id", "FTP")
-H <- merge(info, data, by = "Id")
-write.table(H, "/tmp/ok.txt", quote = F, sep = " ", col.names = F)
-```
-
-Имеем таблицу `H` со ссылкой на файл `.fastq` и указателем болен/здоров. Для просмотра информации о размерах файлов вожно воспользоваться инструментом `./fsize`:
-
-```bash
-#!/bin/bash
-cat $1 | while read line
-do
-  url="$(echo $line | awk '{print $4}')"
-  size="$(curl -sI $url | grep Content-Length)"
-  echo "$line $(echo $size | awk '{print $2}')"
-done
-```
+Результат РНК-секвенирования (RNA-seq) представляет собой список 
+последовательностей нуклеотидов и соответствующих этим нуклеотидам качеств 
+прочтений. Этоти результаты организованы в файлы формата `.fastq`:
 
 ~~~
-$ ./fsize /tmp/ok.txt > /tmp/ok.s.txt
-$ cat /tmp/ok.s.txt
-~~~ 
+http://www.ebi.ac.uk/ena/data/view/SRP044108
+~~~
 
-Скачиваем по 7 образцов как для больных псориазом так и для здоровых:
+## Обработка данных
+
+Объём данных достаточно велик. Ограничимся рассмотрением его подмножества. 
+Далее представлены ссылки на выбранные мной (случайным образом) файлы:
 
 ~~~
 ftp.sra.ebi.ac.uk/vol1/fastq/SRR114/007/SRR1146087/SRR1146087.fastq.gz [psor]
@@ -64,17 +51,36 @@ ftp.sra.ebi.ac.uk/vol1/fastq/SRR114/009/SRR1146109/SRR1146109.fastq.gz [norm]
 
 ### Качество данных. Очистка:
 
-Данные «засорены». Удаляем прочтения, которые более чем на половину состоят из неопределённых нуклеотидов `N`. [Код на JS: FastqNRemove.js](https://gist.github.com/latur/ffb9dbd1952aed731d8c). При запуске скрипта рекомендуется разбить каждый `.fastq` файл на части, обработать эти части и результат склеить. 
+В каждом `.fastq` файле содержится огромное количество прочтений. 
+РНК секвенатор предоставляет данные в сыром, необработанном виде. По этой 
+причине `.fastq` файлы требуется предварительно очистить от мусорных и шумовых 
+прочтений. Какие прочтения принимать за мусорные? Я предлагаю удалить все 
+прочтения, которые более чем на половину состоят из неопределённых нуклеотидов, 
+т.е. `N`. Т.к. для определения уровня экспресси требуется картирование прочтений
+на геном человека, а картирование разумно проводить только тех прочтений, 
+которые не короче чем 40 нуклеотидов.
+
+Удалить прочтения, которые более чем на половину состоят из неопределённых 
+нуклеотидов `N`, можно с помощью JS скрипта: 
+[FastqNRemove.js](https://gist.github.com/latur/ffb9dbd1952aed731d8c)
+
+При запуске скрипта рекомендуется разбить каждый `.fastq` файл на части, 
+обработать эти части и результат склеить (в комментариях к скрипту приложена 
+инструкция).
 
 ~~~
 $ split -l 30000000 SRR1146106.norm.fastq SRR1146106.norm.fastq.p_
 ~~~ 
 
-Если посмотреть на гистограмму усреднённого качества для всех прочтений, можно заметить, что имеется большое количество прочтений с качеством 2. Отсекаем их. [Код на JS: FastqFilter.js](https://gist.github.com/latur/ec4c2d891bc837395344).
+Теперь если взглянуть на усреднённое качество для всех прочтений, можно 
+заметить, что имеется большое количество прочтений с качеством 2 (очень низким).
+Их требуется исключить из рассмотрения.Отсекаем их. 
+[Код на JS: FastqFilter.js](https://gist.github.com/latur/ec4c2d891bc837395344).
 
-![Пример гистограммы усреднённого качества для всех прочтений](https://raw.githubusercontent.com/latur/Bioinformatics-JS/master/notebook/Psoriasis/historgam.png)
+![Пример усреднённого качества для всех прочтений](https://raw.githubusercontent.com/latur/Bioinformatics-JS/master/notebook/Psoriasis/historgam.png)
 
-Выбираем по три набора данных для каждого из двух типов образцов и картируем прочтения на геном человка
+Анализируя оставшиеся прочтения (FastQC) можно выбрать подмножество `.fastq`
+файлов удовлетворительного качества. Мною были выбраны:
 
 ~~~
 SRR1146122.norm
@@ -85,19 +91,30 @@ SRR1146097.psor
 SRR1146087.psor
 ~~~
 
-Для количественного анализа данных потребуется [HTSeq](http://www-huber.embl.de/users/anders/HTSeq/doc/overview.html). [Установка HTSeq на Mac](http://www-huber.embl.de/users/anders/HTSeq/doc/install.html#installation-on-macos-x) требует наличия [SciPy](http://www.scipy.org/install.html). Поставить его можно через [Macports](http://www.macports.org):
+### Картирование. Анализ:
+
+Прочтения из этих файлов были картированы на геном человека с помощью программы 
+`STAR`. Результат картирования — координата каждого из прочтений в геноме 
+человека. Для количественного анализа этих данных потребуется 
+[HTSeq](http://www-huber.embl.de/users/anders/HTSeq/doc/overview.html). 
+[Установка HTSeq на Mac](http://www-huber.embl.de/users/anders/HTSeq/doc/install.html#installation-on-macos-x) 
+требует наличия [SciPy](http://www.scipy.org/install.html). 
+Поставить его можно через [Macports](http://www.macports.org):
 
 ~~~
 sudo port install py27-numpy py27-scipy py27-matplotlib py27-ipython +notebook py27-pandas py27-sympy py27-nose
 ~~~
 
-Далее из файлов `.sam` и файла `.gtf` нотации генов человека получаем количественные значения экспрессии каждого из генов. Например для `SRR1146087.psor.sam`: 
+Имея файлы `.sam` (результат картирования) и `.gtf` (файл нотации генов 
+человека) получаем количественные значения экспрессии каждого из генов. 
+Например, для `SRR1146087.psor.sam`: 
 
 ~~~
 htseq-count map/SRR1146087.psor.sam Homo_sapiens.GRCh38.79.gtf > map/SRR1146087.psor.htseq
 ~~~
 
-Объединяем таблицы в одну и помещаем в файл `htseq.tsv`:
+Имеющиеся файлы `SRR1146087.psor.htseq` разумно объединить в общую таблицу 
+`htseq.tsv`:
 
 ```r
 ## Объединение таблиц
@@ -121,8 +138,6 @@ table <- table[1:(length(table[,1]) - 5),]
 tsvFile <- paste(workDir, "htseq.tsv", sep = "")
 write.table(table, tsvFile, quote = F, sep = "\t", row.names = F)
 ```
-
-### Variance Estimation
 
 ```r
 # Установка bioconductor
@@ -152,7 +167,6 @@ plotDispEsts(cds)
 
 ```r
 res <- nbinomTest(cds, "psor", "norm")
-plotMA(res)
 ```
 
 ![Variance Estimation](https://raw.githubusercontent.com/latur/Bioinformatics-JS/master/notebook/Psoriasis/plotMA.png)
