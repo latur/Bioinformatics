@@ -65,7 +65,7 @@ provides insights into disease mechanisms». Статья посвящена а�
 
 Для этого была использована программа на c++:
 
-`https://gist.github.com/latur/048dce7639de65de0ef6`
+[https://gist.github.com/latur/048dce7639de65de0ef6](https://gist.github.com/latur/048dce7639de65de0ef6)
 
 ### Праймеры Illumina
 
