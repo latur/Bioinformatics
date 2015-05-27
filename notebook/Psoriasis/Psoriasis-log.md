@@ -182,3 +182,96 @@ resTmpOrder <- resTmp[ order(resTmp$padj), ]
 resTmpOrder[1:15,]
 write.table(resTmpOrder[1:50,1], "/tmp/probable.tsv", quote = F, sep = " ", row.names = F)
 ```
+
+
+### Текст вспомогательного `Tmp.sh`:
+
+```bash
+#!/bin/bash
+
+norm="/home/latur/Public/Source/Norm/";
+psor="/home/latur/Public/Source/Psor/";
+ftqc="/home/latur/Public/FastQC/fastqc";
+filtr="/home/latur/Public/App/filter"
+
+################################################################################ 
+# Удаление расширения в указанной папке
+# ./Tmp.sh RemoveExt /home/latur/Public/Source/Norm/ ext newext
+
+function RemoveExt {
+  cd $1;
+  ls *.$2 | while read f 
+  do
+    src=${f##*/_}
+    srcrem=${src%.$2}
+    srcnew=$srcrem$3
+    echo "> mv $src $srcnew";
+    mv $src $srcnew
+  done
+}
+
+if [ $1 == 'RemoveExt' ]; then
+  RemoveExt $2 $3 $4;
+fi
+
+
+################################################################################ 
+# Запуск FastQC
+# ./Tmp.sh FastQC /home/latur/Public/Source/Norm/
+
+function FastQC {
+  cd $1;
+  ls * | while read f 
+  do
+    src=${f##*/_}
+    echo "> $ftqc $src";
+    $ftqc $src;
+    echo "> Done";
+  done
+}
+
+if [ $1 == 'FastQC' ]; then
+  FastQC $2 $3;
+fi
+
+
+################################################################################ 
+# Извлечение количества прочтений из html 
+# ./Tmp.sh RCount /home/latur/Public/Source/Norm/
+
+function RCount {
+  cd $1
+  ls *.html | while read f 
+  do
+    s=${f##*/_}
+    n=${s%_fastqc.html}
+    cnt=$(cat $s | grep -oP "<td>Total Sequences</td><td>[0-9]{1,15}")
+    echo "$n:${cnt:28}" >> $2
+  done
+}
+
+if [ $1 == 'RCount' ]; then
+  RCount $2 $3;
+fi
+
+
+################################################################################ 
+# Удаление плохих прочтений
+# ./Tmp.sh Filter /home/latur/Public/Source/Norm/
+
+function Filter {
+  cd $1
+  ls *.fastq | while read f 
+  do
+    src=${f##*/_}
+    echo "> $filtr $src > $src.trim";
+    $filtr $src > $src.trim;
+    rm -f $src;
+  done
+}
+
+if [ $1 == 'Filter' ]; then
+  Filter $2 $3;
+fi
+```
+
