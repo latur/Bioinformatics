@@ -1,0 +1,148 @@
+From	To	Species	Gene Name
+ENSG00000171124	ILMN_10592	Homo sapiens	fucosyltransferase 3 (galactoside 3(4)-L-fucosyltransferase, Lewis blood group)
+ENSG00000171124	rs11673407	Homo sapiens	fucosyltransferase 3 (galactoside 3(4)-L-fucosyltransferase, Lewis blood group)
+ENSG00000171124	rs778986	Homo sapiens	fucosyltransferase 3 (galactoside 3(4)-L-fucosyltransferase, Lewis blood group)
+ENSG00000171124	rs812936	Homo sapiens	fucosyltransferase 3 (galactoside 3(4)-L-fucosyltransferase, Lewis blood group)
+ENSG00000171124	rs28381970	Homo sapiens	fucosyltransferase 3 (galactoside 3(4)-L-fucosyltransferase, Lewis blood group)
+ENSG00000171124	rs28362458	Homo sapiens	fucosyltransferase 3 (galactoside 3(4)-L-fucosyltransferase, Lewis blood group)
+ENSG00000171124	rs874232	Homo sapiens	fucosyltransferase 3 (galactoside 3(4)-L-fucosyltransferase, Lewis blood group)
+ENSG00000171124	rs2306969	Homo sapiens	fucosyltransferase 3 (galactoside 3(4)-L-fucosyltransferase, Lewis blood group)
+ENSG00000171124	rs28362462	Homo sapiens	fucosyltransferase 3 (galactoside 3(4)-L-fucosyltransferase, Lewis blood group)
+ENSG00000171124	ILMN_1653358	Homo sapiens	fucosyltransferase 3 (galactoside 3(4)-L-fucosyltransferase, Lewis blood group)
+ENSG00000171124	ILMN_306947	Homo sapiens	fucosyltransferase 3 (galactoside 3(4)-L-fucosyltransferase, Lewis blood group)
+ENSG00000163145	ILMN_28062	Homo sapiens	C1q and tumor necrosis factor related protein 7
+ENSG00000163145	ILMN_1662935	Homo sapiens	C1q and tumor necrosis factor related protein 7
+ENSG00000139410	ILMN_20612	Homo sapiens	serine dehydratase-like
+ENSG00000139410	ILMN_1750674	Homo sapiens	serine dehydratase-like
+ENSG00000197956	ILMN_13161	Homo sapiens	S100 calcium binding protein A6
+ENSG00000197956	ILMN_1713636	Homo sapiens	S100 calcium binding protein A6
+ENSG00000163209	ILMN_10478	Homo sapiens	small proline-rich protein 3
+ENSG00000163209	ILMN_175835	Homo sapiens	small proline-rich protein 3
+ENSG00000163209	ILMN_1810835	Homo sapiens	small proline-rich protein 3
+ENSG00000146540	ILMN_22349	Homo sapiens	chromosome 7 open reading frame 50
+ENSG00000146540	ILMN_1838656	Homo sapiens	chromosome 7 open reading frame 50
+ENSG00000146540	ILMN_1718336	Homo sapiens	chromosome 7 open reading frame 50
+ENSG00000146540	ILMN_112147	Homo sapiens	chromosome 7 open reading frame 50
+ENSG00000171385	rs2365669	Homo sapiens	potassium voltage-gated channel, Shal-related subfamily, member 3
+ENSG00000171385	ILMN_1752012	Homo sapiens	potassium voltage-gated channel, Shal-related subfamily, member 3
+ENSG00000171385	ILMN_2337856	Homo sapiens	potassium voltage-gated channel, Shal-related subfamily, member 3
+ENSG00000171385	ILMN_21180	Homo sapiens	potassium voltage-gated channel, Shal-related subfamily, member 3
+ENSG00000171385	ILMN_1727438	Homo sapiens	potassium voltage-gated channel, Shal-related subfamily, member 3
+ENSG00000171385	ILMN_29332	Homo sapiens	potassium voltage-gated channel, Shal-related subfamily, member 3
+ENSG00000042429	ILMN_17489	Homo sapiens	mediator complex subunit 17
+ENSG00000042429	ILMN_1730329	Homo sapiens	mediator complex subunit 17
+ENSG00000177098	ILMN_1695947	Homo sapiens	sodium channel, voltage-gated, type IV, beta
+ENSG00000177098	ILMN_1870	Homo sapiens	sodium channel, voltage-gated, type IV, beta
+ENSG00000214544	ILMN_14548	Homo sapiens	GTF2I repeat domain containing 2 pseudogene
+ENSG00000214544	ILMN_2088234	Homo sapiens	GTF2I repeat domain containing 2 pseudogene
+ENSG00000214544	ILMN_1746403	Homo sapiens	GTF2I repeat domain containing 2 pseudogene
+ENSG00000168671	ILMN_2460	Homo sapiens	UDP glycosyltransferase 3 family, polypeptide A2
+ENSG00000168671	ILMN_1655565	Homo sapiens	UDP glycosyltransferase 3 family, polypeptide A2
+ENSG00000168671	ILMN_180795	Homo sapiens	UDP glycosyltransferase 3 family, polypeptide A2
+ENSG00000132688	ILMN_3947	Homo sapiens	nestin
+ENSG00000132688	ILMN_179900	Homo sapiens	nestin
+ENSG00000132688	ILMN_1738147	Homo sapiens	nestin
+ENSG00000163218	ILMN_19828	Homo sapiens	peptidoglycan recognition protein 4
+ENSG00000163218	ILMN_1781389	Homo sapiens	peptidoglycan recognition protein 4
+ENSG00000102882	ILMN_1812747	Homo sapiens	hypothetical LOC100271831; mitogen-activated protein kinase 3
+ENSG00000102882	ILMN_1667260	Homo sapiens	hypothetical LOC100271831; mitogen-activated protein kinase 3
+ENSG00000102882	ILMN_11845	Homo sapiens	hypothetical LOC100271831; mitogen-activated protein kinase 3
+ENSG00000102882	ILMN_177323	Homo sapiens	hypothetical LOC100271831; mitogen-activated protein kinase 3
+ENSG00000102882	ILMN_2402341	Homo sapiens	hypothetical LOC100271831; mitogen-activated protein kinase 3
+ENSG00000102882	rs9921806	Homo sapiens	hypothetical LOC100271831; mitogen-activated protein kinase 3
+ENSG00000102882	rs11865086	Homo sapiens	hypothetical LOC100271831; mitogen-activated protein kinase 3
+ENSG00000171368	ILMN_655	Homo sapiens	tubulin polymerization promoting protein
+ENSG00000171368	ILMN_1718687	Homo sapiens	tubulin polymerization promoting protein
+ENSG00000108256	ILMN_2102693	Homo sapiens	nuclear fragile X mental retardation protein interacting protein 2
+ENSG00000108256	ILMN_19967	Homo sapiens	nuclear fragile X mental retardation protein interacting protein 2
+ENSG00000108256	ILMN_1765829	Homo sapiens	nuclear fragile X mental retardation protein interacting protein 2
+ENSG00000143546	ILMN_13072	Homo sapiens	S100 calcium binding protein A8
+ENSG00000143546	ILMN_1729801	Homo sapiens	S100 calcium binding protein A8
+ENSG00000188488	ILMN_4712	Homo sapiens	serpin peptidase inhibitor, clade A (alpha-1 antiproteinase, antitrypsin), member 5
+ENSG00000188488	rs2069976	Homo sapiens	serpin peptidase inhibitor, clade A (alpha-1 antiproteinase, antitrypsin), member 5
+ENSG00000188488	rs2069975	Homo sapiens	serpin peptidase inhibitor, clade A (alpha-1 antiproteinase, antitrypsin), member 5
+ENSG00000188488	ILMN_177810	Homo sapiens	serpin peptidase inhibitor, clade A (alpha-1 antiproteinase, antitrypsin), member 5
+ENSG00000188488	rs11847452	Homo sapiens	serpin peptidase inhibitor, clade A (alpha-1 antiproteinase, antitrypsin), member 5
+ENSG00000188488	rs2069966	Homo sapiens	serpin peptidase inhibitor, clade A (alpha-1 antiproteinase, antitrypsin), member 5
+ENSG00000188488	rs2069970	Homo sapiens	serpin peptidase inhibitor, clade A (alpha-1 antiproteinase, antitrypsin), member 5
+ENSG00000188488	ILMN_1759910	Homo sapiens	serpin peptidase inhibitor, clade A (alpha-1 antiproteinase, antitrypsin), member 5
+ENSG00000188488	rs2069956	Homo sapiens	serpin peptidase inhibitor, clade A (alpha-1 antiproteinase, antitrypsin), member 5
+ENSG00000188488	rs2069999	Homo sapiens	serpin peptidase inhibitor, clade A (alpha-1 antiproteinase, antitrypsin), member 5
+ENSG00000188488	rs6113	Homo sapiens	serpin peptidase inhibitor, clade A (alpha-1 antiproteinase, antitrypsin), member 5
+ENSG00000188488	rs6114	Homo sapiens	serpin peptidase inhibitor, clade A (alpha-1 antiproteinase, antitrypsin), member 5
+ENSG00000188488	rs2069978	Homo sapiens	serpin peptidase inhibitor, clade A (alpha-1 antiproteinase, antitrypsin), member 5
+ENSG00000188488	rs6118	Homo sapiens	serpin peptidase inhibitor, clade A (alpha-1 antiproteinase, antitrypsin), member 5
+ENSG00000188488	rs6117	Homo sapiens	serpin peptidase inhibitor, clade A (alpha-1 antiproteinase, antitrypsin), member 5
+ENSG00000188488	rs12887091	Homo sapiens	serpin peptidase inhibitor, clade A (alpha-1 antiproteinase, antitrypsin), member 5
+ENSG00000188488	rs2067060	Homo sapiens	serpin peptidase inhibitor, clade A (alpha-1 antiproteinase, antitrypsin), member 5
+ENSG00000188488	rs6116	Homo sapiens	serpin peptidase inhibitor, clade A (alpha-1 antiproteinase, antitrypsin), member 5
+ENSG00000188488	rs8005151	Homo sapiens	serpin peptidase inhibitor, clade A (alpha-1 antiproteinase, antitrypsin), member 5
+ENSG00000188488	rs6115	Homo sapiens	serpin peptidase inhibitor, clade A (alpha-1 antiproteinase, antitrypsin), member 5
+ENSG00000188488	rs6119	Homo sapiens	serpin peptidase inhibitor, clade A (alpha-1 antiproteinase, antitrypsin), member 5
+ENSG00000188488	rs1475937	Homo sapiens	serpin peptidase inhibitor, clade A (alpha-1 antiproteinase, antitrypsin), member 5
+ENSG00000188488	rs2854946	Homo sapiens	serpin peptidase inhibitor, clade A (alpha-1 antiproteinase, antitrypsin), member 5
+ENSG00000188488	rs885786	Homo sapiens	serpin peptidase inhibitor, clade A (alpha-1 antiproteinase, antitrypsin), member 5
+ENSG00000115084	ILMN_22210	Homo sapiens	solute carrier family 35, member F5
+ENSG00000115084	ILMN_2206554	Homo sapiens	solute carrier family 35, member F5
+ENSG00000197380	ILMN_1733851	Homo sapiens	dapper, antagonist of beta-catenin, homolog 3 (Xenopus laevis)
+ENSG00000197380	ILMN_8584	Homo sapiens	dapper, antagonist of beta-catenin, homolog 3 (Xenopus laevis)
+ENSG00000197380	ILMN_1667468	Homo sapiens	dapper, antagonist of beta-catenin, homolog 3 (Xenopus laevis)
+ENSG00000214376	ILMN_1652946	Homo sapiens	chromosome 11 open reading frame 90
+ENSG00000214376	ILMN_31946	Homo sapiens	chromosome 11 open reading frame 90
+ENSG00000214376	ILMN_170323	Homo sapiens	chromosome 11 open reading frame 90
+ENSG00000171236	ILMN_23044	Homo sapiens	leucine-rich alpha-2-glycoprotein 1
+ENSG00000171236	ILMN_1805228	Homo sapiens	leucine-rich alpha-2-glycoprotein 1
+ENSG00000184731	ILMN_175548	Homo sapiens	family with sequence similarity 110, member C
+ENSG00000184731	ILMN_2090641	Homo sapiens	family with sequence similarity 110, member C
+ENSG00000092529	ILMN_8100	Homo sapiens	calpain 3, (p94)
+ENSG00000092529	ILMN_1692750	Homo sapiens	calpain 3, (p94)
+ENSG00000092529	ILMN_1628	Homo sapiens	calpain 3, (p94)
+ENSG00000092529	ILMN_25522	Homo sapiens	calpain 3, (p94)
+ENSG00000092529	ILMN_1716357	Homo sapiens	calpain 3, (p94)
+ENSG00000092529	ILMN_2332691	Homo sapiens	calpain 3, (p94)
+ENSG00000092529	ILMN_14066	Homo sapiens	calpain 3, (p94)
+ENSG00000092529	ILMN_9400	Homo sapiens	calpain 3, (p94)
+ENSG00000092529	ILMN_2296803	Homo sapiens	calpain 3, (p94)
+ENSG00000092529	ILMN_1687971	Homo sapiens	calpain 3, (p94)
+ENSG00000092529	ILMN_1708964	Homo sapiens	calpain 3, (p94)
+ENSG00000090060	ILMN_175121	Homo sapiens	poly(A) polymerase alpha
+ENSG00000090060	ILMN_2083	Homo sapiens	poly(A) polymerase alpha
+ENSG00000090060	ILMN_1798354	Homo sapiens	poly(A) polymerase alpha
+ENSG00000135094	ILMN_22338	Homo sapiens	serine dehydratase
+ENSG00000135094	ILMN_1811114	Homo sapiens	serine dehydratase
+ENSG00000168497	ILMN_1715991	Homo sapiens	serum deprivation response (phosphatidylserine binding protein)
+ENSG00000168497	ILMN_11513	Homo sapiens	serum deprivation response (phosphatidylserine binding protein)
+ENSG00000143631	ILMN_2134130	Homo sapiens	filaggrin
+ENSG00000143631	ILMN_30111	Homo sapiens	filaggrin
+ENSG00000143631	ILMN_1720695	Homo sapiens	filaggrin
+ENSG00000143631	ILMN_176003	Homo sapiens	filaggrin
+ENSG00000132357	ILMN_1779854	Homo sapiens	caspase recruitment domain family, member 6
+ENSG00000132357	ILMN_137927	Homo sapiens	caspase recruitment domain family, member 6
+ENSG00000132357	ILMN_1669925	Homo sapiens	caspase recruitment domain family, member 6
+ENSG00000164236	ILMN_40436	Homo sapiens	ankyrin repeat domain 33B
+ENSG00000164236	ILMN_1807203	Homo sapiens	ankyrin repeat domain 33B
+ENSG00000164236	ILMN_161913	Homo sapiens	ankyrin repeat domain 33B
+ENSG00000182134	ILMN_1792726	Homo sapiens	tudor and KH domain containing
+ENSG00000182134	ILMN_5902	Homo sapiens	tudor and KH domain containing
+ENSG00000132953	ILMN_1878087	Homo sapiens	exportin 4
+ENSG00000132953	ILMN_164187	Homo sapiens	exportin 4
+ENSG00000132953	ILMN_1657873	Homo sapiens	exportin 4
+ENSG00000132953	ILMN_97711	Homo sapiens	exportin 4
+ENSG00000132953	ILMN_11492	Homo sapiens	exportin 4
+ENSG00000132953	ILMN_2088612	Homo sapiens	exportin 4
+ENSG00000132953	ILMN_1900456	Homo sapiens	exportin 4
+ENSG00000139187	ILMN_2124920	Homo sapiens	killer cell lectin-like receptor subfamily G, member 1
+ENSG00000139187	ILMN_171644	Homo sapiens	killer cell lectin-like receptor subfamily G, member 1
+ENSG00000139187	ILMN_1658399	Homo sapiens	killer cell lectin-like receptor subfamily G, member 1
+ENSG00000139187	ILMN_12613	Homo sapiens	killer cell lectin-like receptor subfamily G, member 1
+ENSG00000165304	ILMN_1731184	Homo sapiens	maternal embryonic leucine zipper kinase
+ENSG00000165304	ILMN_2212909	Homo sapiens	maternal embryonic leucine zipper kinase
+ENSG00000165304	ILMN_161976	Homo sapiens	maternal embryonic leucine zipper kinase
+ENSG00000165304	ILMN_13494	Homo sapiens	maternal embryonic leucine zipper kinase
+ENSG00000183778	ILMN_8586	Homo sapiens	UDP-Gal:betaGlcNAc beta 1,3-galactosyltransferase, polypeptide 5
+ENSG00000183778	ILMN_180094	Homo sapiens	UDP-Gal:betaGlcNAc beta 1,3-galactosyltransferase, polypeptide 5
+ENSG00000183778	ILMN_1698756	Homo sapiens	UDP-Gal:betaGlcNAc beta 1,3-galactosyltransferase, polypeptide 5
+ENSG00000183778	ILMN_8465	Homo sapiens	UDP-Gal:betaGlcNAc beta 1,3-galactosyltransferase, polypeptide 5
+ENSG00000183778	ILMN_2378654	Homo sapiens	UDP-Gal:betaGlcNAc beta 1,3-galactosyltransferase, polypeptide 5
+ENSG00000183778	ILMN_2114	Homo sapiens	UDP-Gal:betaGlcNAc beta 1,3-galactosyltransferase, polypeptide 5
+ENSG00000183778	ILMN_1800713	Homo sapiens	UDP-Gal:betaGlcNAc beta 1,3-galactosyltransferase, polypeptide 5
