@@ -2,15 +2,25 @@
 
 Быстрое решение биоинформатических задач в консоли браузера.
 
-### Подключение (консоль браузера):
+### Подключение (консоль):
 
 ~~~
 Bio = exports = {};
-$.get('https://raw.githubusercontent.com/latur/Bioinformatics/master/@bio.js', {}, function(e){
-	eval(e);
-	for (var func in Bio) console.log('Bio.' + func);
+$.get('https://raw.githubusercontent.com/latur/Bioinformatics/master/@bio.js', {}, eval);
+~~~
+
+### Показать все доступные функции:
+
+~~~
+$.get('https://raw.githubusercontent.com/latur/Bioinformatics/master/@bio.test.js', {}, function(e){
+	var exe = e.split('\n');
+	for (var i in exe) if (exe != '') {
+		console.log("%c" + exe[i],'background: #444; color: #bada55; padding: 3px 5px;');
+		console.log(eval(exe[i]));
+	}
 });
 ~~~
+
 
 ### Подключение node.js:
 
