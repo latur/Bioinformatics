@@ -8,7 +8,7 @@ exports.HammingDistance = function(stringX, stringY)
 {
 	for(var i = 0, h = 0; i < stringX.length; i++) if(stringX[i] != stringY[i]) h++;
 	return h;
-}
+};
 
 // Minimum Skew Problem: Find a position in a genome minimizing the skew.
 //      Input: A DNA string Genome.
@@ -27,7 +27,7 @@ exports.MinimumSkew = function(string)
 		if(s <  min) place = [ i + 1 ], min = s;
 	}
 	return place;
-}
+};
 exports.Skew = function(string)
 {
 	for(var i = 0, s = 0, trace = []; i < string.length; i++)
@@ -37,7 +37,7 @@ exports.Skew = function(string)
 		trace.push(s);
 	}
 	return trace;
-}
+};
 
 // Frequent Words with Mismatches and Reverse Complements Problem: Find the most frequent k-mers (with mismatches and reverse complements) in a DNA string.
 //      Input: A DNA string Text as well as integers k and d.
@@ -68,7 +68,7 @@ exports.FrequentWordsMismatches = function(string, k, d)
 		if(probable[name] > max) var list = [name], max = probable[name];
 	}
 	return list;
-}
+};
 
 // Reverse Complement
 // 
@@ -79,7 +79,7 @@ exports.ReverseComplement = function(string)
 	var Inverse = { 'A' : 'T', 'G' : 'C', 'T' : 'A', 'C' : 'G'}, s = '';
 	for(var i = string.length - 1; i >= 0 ; i--) s += Inverse[string[i]];
 	return s;
-}
+};
 
 // Mismatches (d) in string 
 //
@@ -103,7 +103,7 @@ exports.Mismatches = function(data, d)
 		}
 	}
 	return d > 1 ? exports.Mismatches(variables, d - 1) : variables;
-}
+};
 
 // Protein Translation Problem: Translate an RNA string into an amino acid string.
 //      Input: An RNA string Pattern and the array GeneticCode.
@@ -111,7 +111,8 @@ exports.Mismatches = function(data, d)
 //
 // Example : 
 // ProteinTranslation('AUGGCCAUGGCGCCCAGAACUGAGAUCAAUAGUACCCGUAUUAACGGGUGA');
-exports.ProteinTable = {
+exports.ProteinTable = 
+{
 	'AAA':'K', 'AAC':'N', 'AAG':'K', 'AAU':'N', 'ACA':'T', 'ACC':'T', 'ACG':'T', 'ACU':'T', 
 	'AGA':'R', 'AGC':'S', 'AGG':'R', 'AGU':'S', 'AUA':'I', 'AUC':'I', 'AUG':'M', 'AUU':'I', 
 	'CAA':'Q', 'CAC':'H', 'CAG':'Q', 'CAU':'H', 'CCA':'P', 'CCC':'P', 'CCG':'P', 'CCU':'P', 
@@ -120,14 +121,14 @@ exports.ProteinTable = {
 	'GGA':'G', 'GGC':'G', 'GGG':'G', 'GGU':'G', 'GUA':'V', 'GUC':'V', 'GUG':'V', 'GUU':'V', 
 	'UAA':'.', 'UAC':'Y', 'UAG':'.', 'UAU':'Y', 'UCA':'S', 'UCC':'S', 'UCG':'S', 'UCU':'S', 
 	'UGA':'.', 'UGC':'C', 'UGG':'W', 'UGU':'C', 'UUA':'L', 'UUC':'F', 'UUG':'L', 'UUU':'F' 
-}
+};
 exports.ProteinTranslation = function(string)
 {
 	var Protein = '';
 	var RNA = string.indexOf('T') == -1 ? string : string.replace(/T/g, 'U');
 	for(var i = 0; i < string.length; i +=3) Protein += exports.ProteinTable[ RNA.substr(i, 3) ] || '?';
 	return Protein;
-}
+};
 
 // Peptide Encoding Problem: Find substrings of a genome encoding a given amino acid sequence.
 //      Input: A DNA string Text, an amino acid string Peptide, and the array GeneticCode.
@@ -146,7 +147,7 @@ exports.PeptideEncoding = function(string, peptide)
 		if(exports.ProteinTranslation( partReverse ) == peptide) parts.push(exports.ReverseComplement(partReverse));
 	}
 	return parts;
-}
+};
 
 // Example :
 // Find('ATGGCCATGGCCCCCAGAACTGAGATCAATAGTACCCGTATTAACGGGTGA', 'A')
@@ -157,7 +158,7 @@ exports.Find = function(string, element)
 		if(string.substr(i, l) == element) places.push(i);
 	}
 	return places;
-}
+};
 
 // 
 // Generating Theoretical Spectrum Problem: Generate the theoretical spectrum of a cyclic peptide.
@@ -168,16 +169,17 @@ exports.Find = function(string, element)
 // Cyclospectrum('ACKF')
 exports.MassTable = 
 {
-	'G' : 57,  'A' : 71,  'S' : 87,  'P' : 97,  'V' : 99, 
-	'T' : 101, 'C' : 103, 'I' : 113, 'L' : 113, 'N' : 114, 
-	'D' : 115, 'K' : 128, 'Q' : 128, 'E' : 129, 'M' : 131, 
-	'H' : 137, 'F' : 147, 'R' : 156, 'Y' : 163, 'W' : 186 
-}
+  'A' : 71.037110, 'C' : 103.00919, 'D' : 115.02694, 'E' : 129.04259, 
+  'F' : 147.06841, 'G' : 57.021460, 'H' : 137.05891, 'I' : 113.08406, 
+  'K' : 128.09496, 'L' : 113.08406, 'M' : 131.04049, 'N' : 114.04293,
+  'P' : 97.052760, 'Q' : 128.05858, 'R' : 156.10111, 'S' : 87.032030, 
+  'T' : 101.04768, 'V' : 99.068410, 'W' : 186.07931, 'Y' : 163.06333
+};
 exports.Mass = function(peptide)
 {
 	var mass = peptide.split('').map(function(e){ return exports.MassTable[e] || 0; });
 	return mass.reduce(function(i, j){ return i + j; });
-}
+};
 exports.Cyclospectrum = function(peptide)
 {
 	var parts = [ 0, exports.Mass( peptide ) ];
@@ -186,7 +188,7 @@ exports.Cyclospectrum = function(peptide)
 		for(var i = 0; i < l; i++) parts.push( exports.Mass( cyclo.substr(i, sub) ) );
 	}
 	return parts.sort(function(i,j){ return i-j; });
-}
+};
 
 // Cyclopeptide Sequencing
 // 
@@ -230,7 +232,7 @@ exports.CyclopeptideSequencing = function(spectrum)
 	};
 	
 	return possble([[[], spectrum.slice(-1)[0]]]);
-}
+};
 
 // Cyclopeptide Scoring Problem: Compute the score of a cyclic peptide against a spectrum.
 //      Input: An amino acid string Peptide and a collection of integers Spectrum. 
@@ -248,7 +250,7 @@ exports.CyclopeptideScoring = function(peptide, spectrum)
 		}
 	}
 	return score;
-}
+};
 
 
 // Implanted Motif Problem: Find all (k, d)-motifs in a collection of strings.
@@ -284,7 +286,7 @@ exports.ImplantedMotif = function(dna, k, d)
 	var motifs = [];
 	for(var m in kmers) if( check(m) ) motifs.push( m );
 	return motifs;
-}
+};
 
 // Median String Problem: Find a median string.
 //      Input: A collection of strings Dna and an integer k.
@@ -318,7 +320,7 @@ exports.MedianString = function(dna, k)
 		if(s <  min) median = [ patterns[i] ], min = s;
 	}
 	return median;
-}
+};
 // Генерирование паттернов длины k 
 exports.Patterns = function(k)
 {
@@ -329,7 +331,7 @@ exports.Patterns = function(k)
 	var p = [];
 	for(var i = 0, l = Math.pow(4, k); i < l; i++) p.push(  nk(i.toString(4)) );
 	return p;
-}
+};
 
 // Profile-most Probable k-mer Problem: Find a Profile-most probable k-mer in a string.
 //      Input: A string Text, an integer k, and a 4 × k matrix Profile.
@@ -347,5 +349,5 @@ exports.ProfileMostProbable = function(string, k, matrix)
 		if( p >=  max) most = s, max = p;
 	}
 	return most;
-}
+};
 

@@ -1,7 +1,19 @@
-# Node.js: Bioinformatics Algorithms 
-[https://www.coursera.org/course/bioinformatics](https://www.coursera.org/course/bioinformatics)
+# Bioinformatics Algorithms 
 
-### Подключение:
+Быстрое решение биоинформатических задач в консоли браузера.
+
+### Подключение (консоль браузера):
+
+~~~
+Bio = exports = {};
+$.get('https://raw.githubusercontent.com/latur/Bioinformatics/master/@bio.js', {}, function(e){
+	eval(e);
+	for (var func in Bio) console.log('Bio.' + func);
+});
+~~~
+
+### Подключение node.js:
+
 ~~~
 Bio = require('./@bio.js');
 ~~~
