@@ -5,22 +5,29 @@
 ### Подключение (консоль):
 
 ~~~
+var Get = function(t, f){
+	var client = new XMLHttpRequest();
+	client.onload = function(e){ return (f)(e.srcElement.responseText); };
+	client.open("GET", t);
+	client.send();
+};
 Bio = exports = {};
-$.get('https://raw.githubusercontent.com/latur/Bioinformatics/master/@bio.js', {}, eval);
+Get('https://raw.githubusercontent.com/latur/Bioinformatics/master/@bio.js', eval)
 ~~~
 
 ### Показать все доступные функции:
 
 ~~~
-$.get('https://raw.githubusercontent.com/latur/Bioinformatics/master/@bio.test.js', {}, function(e){
+Get('https://raw.githubusercontent.com/latur/Bioinformatics/master/@bio.test.js', function(e){
 	var exe = e.split('\n');
 	for (var i in exe) if (exe != '') {
 		console.log("%c" + exe[i],'background: #444; color: #bada55; padding: 3px 5px;');
 		console.log(eval(exe[i]));
 	}
-});
+})
 ~~~
 
+![Как это выглядит](https://raw.githubusercontent.com/latur/Bioinformatics/master/notebook/images/demo@bio.png)
 
 ### Подключение node.js:
 
